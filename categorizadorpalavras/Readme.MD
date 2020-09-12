@@ -5,23 +5,7 @@ Iniciar Kafka
 ```
 docker-compose up
 ```
-Criar tópicos
-Tópico de `entrada`
-```
-docker-compose exec kafka  \
-kafka-topics --create --topic entrada --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
-```
-Tópicos de `resultados`
-```
-docker-compose exec kafka  \
-kafka-topics --create --topic pequenas --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
- 
-docker-compose exec kafka  \
-kafka-topics --create --topic medias --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
- 
-docker-compose exec kafka  \
-kafka-topics --create --topic grandes --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
-```
+
 
 2. Criar Projeto
 
@@ -106,17 +90,15 @@ bem ou não
  
 Confira se as palavras com até 3 caracteres estão sendo direcionadas para o pequenas, as com até 6 no médias e as com mais de 6 no grandes, caso necessário façam os ajustes no código.
 ```
-docker-compose exec kafka  \
-kafka-console-consumer --bootstrap-server localhost:9092 --topic pequenas --from-beginning
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic pequenas --from-beginning
 ```
  
 ```
-docker-compose exec kafka  \
-kafka-console-consumer --bootstrap-server localhost:9092 --topic medias --from-beginning
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic medias --from-beginning
 ```
+
 ```
-docker-compose exec kafka  \
-kafka-console-consumer --bootstrap-server localhost:9092 --topic grandes --from-beginning
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic grandes --from-beginning
 ```
  
  

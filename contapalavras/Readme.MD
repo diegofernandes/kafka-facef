@@ -7,20 +7,7 @@ Iniciar Kafka
 ```
 docker-compose up
 ```
- 
-Criar tópicos
- 
-Tópico de `entrada`
-```
-docker-compose exec kafka  \
-kafka-topics --create --topic entrada --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
-```
- 
-Tópico de `resultados`
-```
-docker-compose exec kafka  \
-kafka-topics --create --topic resultado --partitions 1 --replication-factor 1 --if-not-exists --zookeeper zookeeper:2181
-```
+
  
 2. Criar Projeto
  
@@ -166,8 +153,7 @@ spring.cloud.stream.bindings.process-out-0.destination=resultado
 8. Conferido os resultados
  
 ```
-docker-compose exec kafka  \
- kafka-console-consumer --bootstrap-server localhost:9092 --topic resultado --from-beginning
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic resultado --from-beginning
 ```
  
 9. Inicie o projeto e gere alguns eventos como no passo (#6)
